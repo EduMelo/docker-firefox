@@ -143,6 +143,9 @@ RUN \
 
 # Adjust the openbox config.
 RUN \
+    # Make sure the main window is always in the background.
+    sed-patch 's/<maximized>true<\/maximized>/<maximized>false<\/maximized>/' \
+        /etc/xdg/openbox/rc.xml && \
     # Maximize only the main window.
     sed-patch 's/<application type="normal">/<application type="normal" title="Mozilla Firefox">/' \
         /etc/xdg/openbox/rc.xml && \
